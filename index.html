@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>madebyel — Fresh edits, made by hand.</title>
+<meta name="description" content="madebyel (made by Biyel): jasa edit video dan foto untuk konten media sosial, video personal dan acara, serta retouch foto. Fresh edits, made by hand.">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --krem:#F9F6F1;      /* latar poster */
+    --krem-2:#F5E8D6;    /* latar logo & huruf */
+    --merah:#C32020;     /* tomat logo */
+    --tomat:#D82A0B;     /* tomat karakter & bingkai */
+    --hijau:#1B8C67;     /* tangkai & sepatu */
+    --cokelat:#2B1E1A;   /* teks */
+    --abu:#6E5D55;
+    --r:28px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Nunito",system-ui,sans-serif;color:var(--cokelat);background:var(--krem);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Fredoka",system-ui,sans-serif;font-weight:700;line-height:1.05;color:var(--merah)}
+  .tangan{font-family:"Caveat",cursive;font-weight:700}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  section{padding:100px 0}
+  h2{font-size:clamp(40px,5.4vw,62px);margin-bottom:16px}
+  .sapa{font-family:"Caveat",cursive;font-weight:700;font-size:30px;color:var(--hijau);display:block;margin-bottom:4px;transform:rotate(-2deg)}
+  .lead{color:var(--abu);font-size:18px;max-width:620px}
+  .tengah{text-align:center}.tengah .lead{margin:0 auto}
+
+  /* pola gingham dari poster */
+  .gingham{background-color:var(--krem);background-image:linear-gradient(90deg,rgba(216,42,11,.55) 50%,transparent 50%),linear-gradient(rgba(216,42,11,.55) 50%,transparent 50%);background-size:28px 28px}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--tomat);color:#fff;font-family:"Fredoka";font-weight:600;font-size:18px;text-decoration:none;padding:15px 28px;border-radius:999px;box-shadow:0 5px 0 #8E1A10;transition:transform .15s,box-shadow .15s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 #8E1A10}
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 #8E1A10}
+  .btn.hijau{background:var(--hijau);box-shadow:0 5px 0 #0F5A42}
+  .btn.putih{background:#fff;color:var(--merah);box-shadow:0 5px 0 #E9DCCB}
+  .btn svg{width:20px;height:20px}
+
+  /* gelembung bicara piksel seperti di poster */
+  .bubble{display:inline-block;position:relative;background:#fff;border:3px solid var(--cokelat);border-radius:14px;padding:6px 16px;font-family:"Nunito";font-weight:700;font-size:15px;color:var(--tomat);box-shadow:4px 4px 0 var(--cokelat)}
+  .bubble::after{content:"";position:absolute;bottom:-14px;left:26px;width:16px;height:14px;background:#fff;border-right:3px solid var(--cokelat);border-bottom:3px solid var(--cokelat);transform:skewX(-30deg)}
+
+  /* HEADER */
+  header{position:sticky;top:0;z-index:40;background:rgba(249,246,241,.95);backdrop-filter:blur(8px);border-bottom:3px solid var(--tomat)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo img{height:54px;width:auto}
+  .logo span{font-family:"Fredoka";font-weight:700;font-size:24px;color:var(--merah)}
+  .menu{display:flex;gap:28px;list-style:none;align-items:center}
+  .menu a{text-decoration:none;font-weight:700;font-size:16px}
+  .menu a:hover{color:var(--tomat)}
+  .menu .btn{padding:11px 22px;font-size:16px}
+  .burger{display:none;background:none;border:0;cursor:pointer;color:var(--merah)}
+  .burger svg{width:32px;height:32px}
+
+  /* BANNER UTAMA */
+  .banner{padding:34px 0 0}
+  .bingkai{border-radius:44px;padding:26px}
+  .banner-isi{background:var(--krem);border:6px solid var(--tomat);border-radius:34px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:30px;padding:60px 56px;position:relative;overflow:hidden}
+  .banner h1{font-size:clamp(50px,6.6vw,86px);margin:18px 0 18px;letter-spacing:-.01em}
+  .banner h1 .tangan{display:block;color:var(--hijau);font-size:.78em;line-height:1;margin-top:6px}
+  .banner p{color:var(--abu);font-size:19px;max-width:470px;margin-bottom:30px}
+  .banner .aksi{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .banner-visual{position:relative;text-align:center}
+  .banner-visual .logo-besar{width:min(380px,90%);margin:0 auto;transform:rotate(-4deg);filter:drop-shadow(0 18px 24px rgba(195,32,32,.25));animation:goyang 5s ease-in-out infinite}
+  .banner-visual .karakter{width:min(400px,92%);margin:-10px auto 0}
+  .banner-visual .b1{position:absolute;top:52%;left:0;transform:rotate(-8deg)}
+  .banner-visual .b2{position:absolute;top:56%;right:2%;transform:rotate(6deg)}
+  @keyframes goyang{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(2deg) translateY(-6px)}}
+
+  /* PITA BERJALAN */
+  .pita{background:var(--merah);color:var(--krem-2);overflow:hidden;white-space:nowrap;padding:16px 0;margin-top:70px;transform:rotate(-1.2deg)}
+  .pita-isi{display:inline-block;animation:jalan 28s linear infinite;font-family:"Fredoka";font-weight:600;font-size:26px}
+  .pita-isi span{margin:0 22px}
+  .pita-isi .t{color:#fff}
+  @keyframes jalan{to{transform:translateX(-50%)}}
+
+  /* TENTANG */
+  .tentang-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+  .kartu-nama{background:#fff;border:4px solid var(--cokelat);border-radius:var(--r);box-shadow:10px 10px 0 var(--tomat);padding:40px 36px;text-align:center;transform:rotate(-2deg)}
+  .kartu-nama img{width:230px;margin:0 auto 14px}
+  .kartu-nama .baca{font-size:16px;color:var(--abu)}
+  .kartu-nama .baca b{color:var(--merah)}
+  .kartu-nama .tag{font-family:"Caveat";font-weight:700;font-size:34px;color:var(--hijau);margin-top:8px}
+  .tentang-isi p{color:var(--abu);margin-bottom:16px}
+  .karakter-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .karakter-list span{font-family:"Fredoka";font-weight:600;font-size:17px;padding:8px 18px;border-radius:999px;border:2.5px solid var(--cokelat);background:#fff}
+  .karakter-list span:nth-child(odd){background:var(--tomat);color:#fff;border-color:var(--tomat)}
+
+  /* LAYANAN */
+  .layanan{background:#fff;border-top:3px dashed #EBCFC4;border-bottom:3px dashed #EBCFC4}
+  .lay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px}
+  .lay{background:var(--krem);border-radius:var(--r);padding:34px 30px;border:3px solid transparent;transition:border-color .2s,transform .2s;position:relative}
+  a.lay{display:block;text-decoration:none;color:inherit;cursor:pointer}
+  .lay:hover{border-color:var(--tomat);transform:translateY(-6px)}
+  .lay .lihat{display:inline-block;margin-top:20px;font:600 17px "Fredoka";color:var(--tomat);border-bottom:2.5px solid var(--tomat)}
+  .lay:hover .lihat{color:var(--merah)}
+  .lay .ik{width:74px;height:74px;border-radius:50%;background:var(--tomat);color:#fff;display:grid;place-items:center;margin-bottom:22px;position:relative}
+  .lay .ik::before{content:"";position:absolute;top:-10px;left:22px;width:30px;height:14px;background:var(--hijau);clip-path:polygon(50% 100%,0 0,30% 30%,50% 0,70% 30%,100% 0)}
+  .lay .ik svg{width:32px;height:32px}
+  .lay h3{font-size:30px;margin-bottom:10px;color:var(--cokelat)}
+  .lay p{color:var(--abu);font-size:16px}
+  .lay ul{list-style:none;margin-top:16px;display:grid;gap:8px}
+  .lay li{font-size:15px;font-weight:600;padding-left:26px;position:relative}
+  .lay li::before{content:"✓";position:absolute;left:0;color:var(--hijau);font-weight:800}
+
+  .unggul{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+  .unggul div{display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:20px;background:var(--hijau);color:#fff}
+  .unggul b{font-family:"Fredoka";font-weight:600;font-size:22px;display:block;line-height:1.1}
+  .unggul small{font-size:14px;opacity:.9}
+  .unggul .em{flex:none;font-size:30px}
+
+  /* CARA ORDER */
+  .langkah{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:56px;position:relative}
+  .langkah::before{content:"";position:absolute;top:44px;left:12%;right:12%;border-top:4px dotted var(--tomat)}
+  .lk{text-align:center;position:relative}
+  .lk .no{width:88px;height:88px;margin:0 auto 18px;border-radius:50%;background:#fff;border:4px solid var(--tomat);display:grid;place-items:center;font-family:"Fredoka";font-weight:700;font-size:38px;color:var(--tomat);box-shadow:0 6px 0 #EBCFC4}
+  .lk h3{font-size:26px;color:var(--cokelat);margin-bottom:6px}
+  .lk p{color:var(--abu);font-size:15px;max-width:230px;margin:0 auto}
+  .harga-catatan{margin:46px auto 0;max-width:720px;text-align:center;background:#fff;border:3px dashed var(--tomat);border-radius:22px;padding:20px 26px;font-weight:600}
+  .harga-catatan b{color:var(--merah)}
+
+  /* GALERI */
+  .galeri{background:#fff}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:50px}
+  .gal-grid figure{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:var(--krem-2);border:4px solid var(--cokelat);box-shadow:6px 6px 0 var(--tomat);transition:transform .25s}
+  .gal-grid figure:nth-child(even){transform:rotate(1.5deg)}
+  .gal-grid figure:nth-child(odd){transform:rotate(-1.5deg)}
+  .gal-grid figure:hover{transform:rotate(0) scale(1.03);z-index:2}
+  .gal-grid img{width:100%;height:100%;object-fit:cover}
+  .gal-grid figure.kar{display:grid;place-items:center;background:var(--krem)}
+  .gal-grid figure.kar img{width:86%;height:auto;object-fit:contain}
+  .gal-grid figcaption{position:absolute;left:12px;bottom:12px;background:#fff;border:2.5px solid var(--cokelat);border-radius:999px;padding:4px 14px;font-weight:800;font-size:13px}
+
+  /* AJAKAN */
+  .ajakan{padding:80px 0}
+  .ajakan-box{background:var(--merah);border-radius:40px;padding:60px 50px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;position:relative;overflow:hidden;border:6px solid var(--krem)}
+  .ajakan-box h2{color:#fff;margin:0;font-size:clamp(38px,5vw,60px)}
+  .ajakan-box h2 .tangan{color:var(--krem-2);display:block;font-size:.7em}
+  .ajakan-box .kar{position:absolute;right:30%;bottom:-24px;width:200px;opacity:.95;pointer-events:none}
+
+  /* KONTAK */
+  footer{background:var(--cokelat);color:var(--krem-2);padding:70px 0 36px}
+  .kaki{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px}
+  .kaki img{height:80px;width:auto;background:var(--krem-2);border-radius:20px;padding:8px 12px}
+  .kaki p{color:#CDBBAD;margin-top:16px;max-width:330px;font-size:15px}
+  .kaki h4{font-family:"Fredoka";font-weight:600;font-size:22px;color:#fff;margin-bottom:14px}
+  .kaki ul{list-style:none;display:grid;gap:10px}
+  .kaki a{text-decoration:none;color:var(--krem-2);display:inline-flex;gap:10px;align-items:center}
+  .kaki a:hover{color:#FF8A6B}
+  .kaki svg{width:20px;height:20px}
+  .bawah{border-top:1px dashed rgba(245,232,214,.25);margin-top:50px;padding-top:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:#A8968A}
+
+  .muncul{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .muncul.tampil{opacity:1;transform:none}
+  .gal-grid figure.muncul.tampil:nth-child(even){transform:rotate(1.5deg)}
+  .gal-grid figure.muncul.tampil:nth-child(odd){transform:rotate(-1.5deg)}
+  @media (prefers-reduced-motion:reduce){.muncul{opacity:1;transform:none}.pita-isi,.logo-besar{animation:none}}
+
+  /* TABLET */
+  @media (max-width:980px){
+    .menu{display:none}
+    .menu.buka{display:flex;position:absolute;top:78px;left:0;right:0;flex-direction:column;gap:0;background:var(--krem);padding:8px 0 20px;border-bottom:3px solid var(--tomat)}
+    .menu.buka a{display:block;padding:12px 24px}
+    .menu.buka .btn{margin:8px 24px 0;display:inline-flex}
+    .burger{display:block}
+    .banner-isi{grid-template-columns:1fr;padding:44px 30px;text-align:center}
+    .banner p{margin-left:auto;margin-right:auto}
+    .banner .aksi{justify-content:center}
+    .banner-visual{order:-1}
+    .tentang-grid{grid-template-columns:1fr;gap:50px}
+    .kartu-nama{max-width:420px;margin:0 auto}
+    .lay-grid,.unggul{grid-template-columns:1fr}
+    .langkah{grid-template-columns:1fr 1fr;row-gap:40px}
+    .langkah::before{display:none}
+    .gal-grid{grid-template-columns:1fr 1fr}
+    .kaki{grid-template-columns:1fr 1fr}
+    .kaki > div:first-child{grid-column:span 2}
+    .ajakan-box .kar{display:none}
+  }
+  @media (max-width:560px){
+    section{padding:72px 0}
+    .bingkai{padding:14px;border-radius:30px}
+    .banner-isi{padding:34px 20px;border-radius:24px}
+    .banner-visual .b1,.banner-visual .b2{display:none}
+    .banner .aksi .btn{width:100%;justify-content:center}
+    .langkah{grid-template-columns:1fr}
+    .ajakan-box{padding:40px 26px;text-align:center;justify-content:center}
+    .kaki{grid-template-columns:1fr}
+    .kaki > div:first-child{grid-column:auto}
+  }
+  /* HALAMAN KARYA */
+  .menu a.aktif{color:var(--tomat);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+  .judul-hal{padding:60px 0 20px;text-align:center}
+  .judul-hal h1{font-size:clamp(48px,7vw,84px);margin:4px 0 14px}
+  .judul-hal p{color:var(--abu);max-width:620px;margin:0 auto}
+  .tab{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:34px 0 10px;position:sticky;top:90px;z-index:20}
+  .tab button{font:600 16px "Fredoka";padding:10px 22px;border-radius:999px;border:2.5px solid var(--cokelat);background:#fff;color:var(--cokelat);cursor:pointer;box-shadow:3px 3px 0 var(--cokelat)}
+  .tab button.aktif{background:var(--tomat);border-color:var(--tomat);color:#fff;box-shadow:3px 3px 0 #8E1A10}
+  .kat{padding:60px 0;border-top:3px dashed #EBCFC4}
+  .kat.sembunyi{display:none}
+  .kat-kepala{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+  .kat-kepala h2{margin:0;font-size:clamp(34px,4.4vw,50px)}
+  .kat-kepala p{color:var(--abu);max-width:460px;font-size:16px}
+  .no-kat{font:700 18px "Fredoka";color:var(--hijau)}
+  .label-contoh{display:inline-block;font:800 12px Nunito;letter-spacing:.08em;background:var(--cokelat);color:#fff;padding:4px 10px;border-radius:999px;margin-left:6px;vertical-align:middle}
+  .karya-grid{display:grid;gap:26px}
+  .g-sosmed{grid-template-columns:repeat(4,1fr)}
+  .g-video{grid-template-columns:repeat(2,1fr)}
+  .g-retouch{grid-template-columns:repeat(2,1fr)}
+  .karya{background:#fff;border:3px solid var(--cokelat);border-radius:24px;overflow:hidden;box-shadow:6px 6px 0 var(--tomat)}
+  .karya .media{position:relative;background:var(--krem-2)}
+  .karya .media img{width:100%;height:100%;object-fit:cover;display:block}
+  .g-sosmed .media{aspect-ratio:9/16;max-height:560px}
+  .g-video .media{aspect-ratio:16/9}
+  .karya .info{padding:16px 18px 18px}
+  .karya h3{font-size:22px;color:var(--cokelat);margin-bottom:4px}
+  .karya .info p{font-size:14px;color:var(--abu)}
+  .tagkecil{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .tagkecil span{font:700 12px Nunito;background:var(--krem);border:1.5px solid #E2CDBF;border-radius:999px;padding:3px 10px}
+  .play{position:absolute;right:20px;bottom:20px;display:grid;place-items:center}
+  .play span{width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+  .play svg{width:30px;height:30px;color:var(--tomat);margin-left:4px}
+  /* slider sebelum/sesudah */
+  .ba{position:relative;aspect-ratio:3/2;overflow:hidden;user-select:none;touch-action:pan-y;cursor:ew-resize}
+  .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .ba .atas{clip-path:inset(0 calc(100% - var(--pos,50%)) 0 0)}
+  .ba .garis{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:4px;margin-left:-2px;background:#fff;box-shadow:0 0 0 2px var(--cokelat)}
+  .ba .gagang{position:absolute;top:50%;left:var(--pos,50%);width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:var(--tomat);border:3px solid #fff;color:#fff;display:grid;place-items:center;font:700 18px Fredoka;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+  .ba .lbl{position:absolute;top:12px;font:800 13px Nunito;background:rgba(43,30,26,.8);color:#fff;padding:4px 12px;border-radius:999px}
+  .ba .lbl.k{left:12px}.ba .lbl.n{right:12px}
+  .ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+  .catatan-karya{text-align:center;color:var(--abu);font-size:14px;margin-top:20px}
+  @media (max-width:980px){
+    .g-sosmed{grid-template-columns:repeat(4,minmax(220px,1fr));overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px}
+    .g-sosmed .karya{scroll-snap-align:start}
+    .g-video{grid-template-columns:1fr 1fr}
+    .tab{top:86px}
+  }
+  @media (max-width:560px){
+    .g-video,.g-retouch{grid-template-columns:1fr}
+    .g-sosmed{grid-template-columns:repeat(4,78%)}
+  }
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap nav">
+    <a href="#beranda" class="logo"><img src="img/logo.png" alt="Logo madebyel"><span>madebyel</span></a>
+    <button class="burger" aria-label="Buka menu" onclick="document.getElementById('menu').classList.toggle('buka')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <ul class="menu" id="menu">
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#order">Cara Order</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#karya">Karya</a></li>
+      <li><a href="#kontak" class="btn">Order via DM</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div id="hal-beranda">
+
+<!-- 1. BERANDA / BANNER UTAMA -->
+<section class="banner" id="beranda">
+  <div class="wrap">
+    <div class="bingkai gingham">
+      <div class="banner-isi">
+        <div class="muncul">
+          <span class="bubble">made by hand</span>
+          <h1>Fresh edits,<span class="tangan">made by hand.</span></h1>
+          <p>Jasa edit video dan foto untuk konten media sosial, video personal dan acara, serta retouch foto. Dikerjakan langsung oleh Biyel, satu per satu, sesuai gaya kamu.</p>
+          <div class="aksi">
+            <a href="#kontak" class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Ngobrol dulu, yuk</a>
+            <a href="#layanan" class="btn putih">Lihat layanan</a>
+          </div>
+        </div>
+        <div class="banner-visual muncul">
+          <img class="logo-besar" src="img/logo.png" alt="Logo madebyel: tomat bergaya goresan tangan">
+          <img class="karakter" src="img/karakter-tomat.png" alt="Dua karakter tomat bergandengan tangan">
+          <span class="bubble b2">Fresh Edit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pita" aria-hidden="true">
+    <div class="pita-isi">
+      <span class="t">Fresh edits</span><span>🍅</span><span>Made by hand</span><span>🍅</span><span class="t">Social media content</span><span>🍅</span><span>Personal &amp; event videos</span><span>🍅</span><span class="t">Photo retouching</span><span>🍅</span>
+      <span class="t">Fresh edits</span><span>🍅</span><span>Made by hand</span><span>🍅</span><span class="t">Social media content</span><span>🍅</span><span>Personal &amp; event videos</span><span>🍅</span><span class="t">Photo retouching</span><span>🍅</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2. TENTANG MEREK -->
+<section id="tentang">
+  <div class="wrap tentang-grid">
+    <div class="kartu-nama muncul">
+      <img src="img/logo.png" alt="Logo madebyel">
+      <div class="baca">dibaca <b>“made by Biyel”</b></div>
+      <div class="tag">fresh edits, made by hand</div>
+    </div>
+    <div class="tentang-isi muncul">
+      <span class="sapa">Hai, kenalan dulu!</span>
+      <h2>Ada orang nyata di balik setiap edit</h2>
+      <p>madebyel berasal dari “made by Biyel”. Biyel adalah nama panggilan pemilik sekaligus editornya. Setiap hasil edit dikerjakan langsung dan personal, bukan hasil template massal, jadi kamu selalu tahu siapa yang bertanggung jawab atas kontenmu.</p>
+      <p>Logo tomat bergaya goresan tangan menggambarkan dua janji kami: hasil yang <b>segar</b> seperti tomat matang, dan dikerjakan <b>dengan tangan</b>, satu per satu, sesuai kebutuhan dan gaya kamu.</p>
+      <div class="karakter-list">
+        <span>Personal</span><span>Hangat</span><span>Santai</span><span>Kreatif</span><span>Segar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. LAYANAN -->
+<section class="layanan" id="layanan">
+  <div class="wrap">
+    <div class="tengah muncul">
+      <span class="sapa">apa yang bisa dibantu?</span>
+      <h2>Layanan madebyel</h2>
+      <p class="lead">Untuk mahasiswa, content creator pemula, UMKM, dan personal brand yang ingin kontennya rapi tanpa ribet.</p>
+    </div>
+    <div class="lay-grid">
+      <a class="lay muncul" href="#karya-sosmed">
+        <div class="ik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10.5 9.5v5l4-2.5z" fill="currentColor"/></svg></div>
+        <h3>Social Media Content</h3>
+        <p>Edit video pendek dan konten feed yang siap tayang di Instagram dan TikTok.</p>
+        <ul><li>Reels dan TikTok</li><li>Teks, transisi, dan musik</li><li>Format vertikal siap unggah</li></ul>
+      
+        <span class="lihat">Lihat contoh karya →</span>
+      </a>
+      <a class="lay muncul" href="#karya-video">
+        <div class="ik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></svg></div>
+        <h3>Personal &amp; Event Videos</h3>
+        <p>Rangkum momen pribadi dan acara menjadi video yang hangat untuk dikenang dan dibagikan.</p>
+        <ul><li>Video ulang tahun dan wisuda</li><li>Dokumentasi acara</li><li>Video kenangan personal</li></ul>
+      
+        <span class="lihat">Lihat contoh karya →</span>
+      </a>
+      <a class="lay muncul" href="#karya-retouch">
+        <div class="ik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="15" rx="2"/><circle cx="12" cy="12.5" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg></div>
+        <h3>Photo Retouching</h3>
+        <p>Rapikan foto agar warnanya hidup, tampilannya bersih, dan siap dipakai untuk konten.</p>
+        <ul><li>Koreksi warna dan cahaya</li><li>Retouch ringan</li><li>Foto produk dan potret</li></ul>
+      
+        <span class="lihat">Lihat contoh karya →</span>
+      </a>
+    </div>
+    <div class="unggul">
+      <div class="muncul"><span class="em">⚡</span><span><b>Fast Turnaround</b><small>Pengerjaan cepat sesuai jadwal yang disepakati</small></span></div>
+      <div class="muncul"><span class="em">✂️</span><span><b>Neat Edits</b><small>Hasil rapi dan detail</small></span></div>
+      <div class="muncul"><span class="em">💸</span><span><b>Affordable Rates</b><small>Harga ramah kantong</small></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CARA ORDER -->
+<section id="order">
+  <div class="wrap">
+    <div class="tengah muncul">
+      <span class="sapa">gampang kok</span>
+      <h2>Cara order</h2>
+      <p class="lead">Empat langkah dari ide sampai konten siap tayang.</p>
+    </div>
+    <div class="langkah">
+      <div class="lk muncul"><div class="no">1</div><h3>Kirim DM</h3><p>Ceritakan kebutuhanmu lewat Instagram.</p></div>
+      <div class="lk muncul"><div class="no">2</div><h3>Kirim bahan</h3><p>Bagikan video, foto, dan contoh gaya yang kamu suka.</p></div>
+      <div class="lk muncul"><div class="no">3</div><h3>Proses edit</h3><p>Biyel mengerjakan editnya dan mengirim hasil untuk dicek.</p></div>
+      <div class="lk muncul"><div class="no">4</div><h3>Konten pop!</h3><p>Terima file final dan unggah kontenmu.</p></div>
+    </div>
+    <p class="harga-catatan muncul">Harga menyesuaikan jenis dan durasi editan. <b>Tanya dulu gratis</b>, tanpa komitmen.</p>
+  </div>
+</section>
+
+<!-- 4. GALERI -->
+<section class="galeri" id="galeri">
+  <div class="wrap">
+    <div class="tengah muncul">
+      <span class="sapa">@madebyel</span>
+      <h2>Galeri konten</h2>
+      <p class="lead">Cuplikan konten dari media sosial madebyel.</p>
+    </div>
+    <div class="gal-grid">
+      <figure class="muncul"><img src="img/poster.jpg" alt="Poster madebyel: Let's make your content pop!" style="object-position:50% 30%"><figcaption>Poster</figcaption></figure>
+      <figure class="muncul"><img src="img/konten1.jpg" alt="Konten: Let's make your content pop"><figcaption>Tagline</figcaption></figure>
+      <figure class="muncul"><img src="img/konten2.jpg" alt="Konten: tiga layanan madebyel"><figcaption>Layanan</figcaption></figure>
+      <figure class="muncul kar"><img src="img/karakter-tomat.png" alt="Karakter tomat madebyel"><figcaption>Maskot</figcaption></figure>
+    </div>
+    <p class="tengah" style="margin-top:44px"><a href="#karya" class="btn hijau">Lihat contoh karya per layanan →</a></p>
+  </div>
+</section>
+
+<!-- AJAKAN -->
+<section class="ajakan">
+  <div class="wrap">
+    <div class="ajakan-box">
+      <h2>Let’s make your<br>content pop!<span class="tangan">siap bikin kontenmu lebih segar?</span></h2>
+      <img class="kar" src="img/karakter-tomat.png" alt="">
+      <a href="https://www.instagram.com/madebyel" target="_blank" rel="noopener" class="btn putih">Order via DM Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5. KONTAK -->
+</div>
+
+<main id="hal-karya" hidden>
+<section class="judul-hal">
+  <div class="wrap muncul">
+    <span class="sapa">hasil kerja tangan</span>
+    <h1>Contoh karya</h1>
+    <p>Contoh hasil edit untuk setiap layanan madebyel. Pilih kategori untuk melihat jenis pekerjaan yang paling sesuai dengan kebutuhanmu.</p>
+  </div>
+  <div class="wrap">
+    <div class="tab" role="tablist" aria-label="Kategori karya">
+      <button class="aktif" data-f="semua">Semua</button>
+      <button data-f="sosmed">Social Media Content</button>
+      <button data-f="video">Personal &amp; Event Videos</button>
+      <button data-f="retouch">Photo Retouching</button>
+    </div>
+  </div>
+</section>
+
+<section class="kat" data-kat="sosmed" id="sosmed">
+  <div class="wrap">
+    <div class="kat-kepala muncul">
+      <div><span class="no-kat">01 · Layanan</span><h2>Social Media Content</h2></div>
+      <p>Reels, TikTok, dan konten feed dengan teks, transisi, dan musik yang siap unggah dalam format vertikal.</p>
+    </div>
+    <div class="karya-grid g-sosmed">
+      <article class="karya muncul"><div class="media"><img src="img/karya/sosmed-1.jpg" alt="Reels tips untuk UMKM" loading="lazy"></div>
+        <div class="info"><h3>Reels tips untuk UMKM</h3><p>Video edukasi singkat dengan teks bertahap dan ajakan di akhir.</p><div class="tagkecil"><span>Reels</span><span>UMKM</span><span>30 detik</span></div></div></article>
+      <article class="karya muncul"><div class="media"><img src="img/karya/sosmed-2.jpg" alt="TikTok behind the edit" loading="lazy"></div>
+        <div class="info"><h3>TikTok behind the edit</h3><p>Konten proses edit dari klip mentah sampai jadi.</p><div class="tagkecil"><span>TikTok</span><span>Kreator</span></div></div></article>
+      <article class="karya muncul"><div class="media"><img src="img/karya/sosmed-3.jpg" alt="Carousel personal brand" loading="lazy"></div>
+        <div class="info"><h3>Carousel personal brand</h3><p>Lima slide perkenalan sosok di balik merek untuk feed Instagram.</p><div class="tagkecil"><span>Feed</span><span>Carousel</span></div></div></article>
+      <article class="karya muncul"><div class="media"><img src="img/karya/sosmed-4.jpg" alt="Story promo produk baru" loading="lazy"></div>
+        <div class="info"><h3>Story promo produk</h3><p>Story vertikal untuk mengumumkan produk baru dan promo.</p><div class="tagkecil"><span>Story</span><span>Promo</span></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="kat" data-kat="video" id="video">
+  <div class="wrap">
+    <div class="kat-kepala muncul">
+      <div><span class="no-kat">02 · Layanan</span><h2>Personal &amp; Event Videos</h2></div>
+      <p>Momen pribadi dan acara dirangkum menjadi video yang hangat untuk dikenang dan dibagikan.</p>
+    </div>
+    <div class="karya-grid g-video">
+      <article class="karya muncul"><div class="media"><img src="img/karya/video-1.jpg" alt="Highlight wisuda" loading="lazy"><div class="play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div></div>
+        <div class="info"><h3>Highlight wisuda</h3><p>Rangkuman hari kelulusan dalam satu menit.</p><div class="tagkecil"><span>Wisuda</span><span>01:00</span></div></div></article>
+      <article class="karya muncul"><div class="media"><img src="img/karya/video-2.jpg" alt="Recap acara kampus" loading="lazy"><div class="play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div></div>
+        <div class="info"><h3>Recap acara kampus</h3><p>Dokumentasi acara dengan potongan dinamis.</p><div class="tagkecil"><span>Acara</span><span>02:30</span></div></div></article>
+      <article class="karya muncul"><div class="media"><img src="img/karya/video-3.jpg" alt="Kejutan ulang tahun" loading="lazy"><div class="play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div></div>
+        <div class="info"><h3>Kejutan ulang tahun</h3><p>Video personal berisi ucapan dari teman dan keluarga.</p><div class="tagkecil"><span>Personal</span><span>00:45</span></div></div></article>
+      <article class="karya muncul"><div class="media"><img src="img/karya/video-4.jpg" alt="Video momen lamaran" loading="lazy"><div class="play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div></div>
+        <div class="info"><h3>Momen lamaran</h3><p>Video acara keluarga yang hangat dengan musik pilihan.</p><div class="tagkecil"><span>Keluarga</span><span>03:00</span></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="kat" data-kat="retouch" id="retouch">
+  <div class="wrap">
+    <div class="kat-kepala muncul">
+      <div><span class="no-kat">03 · Layanan</span><h2>Photo Retouching</h2></div>
+      <p>Geser garis di tengah foto untuk membandingkan hasil sebelum dan sesudah retouch.</p>
+    </div>
+    <div class="karya-grid g-retouch">
+      <article class="karya muncul"><div class="ba" style="--pos:50%">
+          <img src="img/karya/retouch-1-sesudah.jpg" alt="Koreksi warna dan cahaya: sesudah">
+          <img class="atas" src="img/karya/retouch-1-sebelum.jpg" alt="Koreksi warna dan cahaya: sebelum">
+          <span class="lbl k">Sebelum</span><span class="lbl n">Sesudah</span>
+          <div class="garis"></div><div class="gagang">⇆</div>
+          <input type="range" min="0" max="100" value="50" aria-label="Geser untuk membandingkan sebelum dan sesudah">
+        </div>
+        <div class="info"><h3>Koreksi warna dan cahaya</h3><p>Foto kusam dibuat lebih terang, kontras, dan warnanya hidup.</p><div class="tagkecil"><span>Warna</span><span>Cahaya</span></div></div></article>
+      <article class="karya muncul"><div class="ba" style="--pos:50%">
+          <img src="img/karya/retouch-2-sesudah.jpg" alt="Ketajaman dan detail: sesudah">
+          <img class="atas" src="img/karya/retouch-2-sebelum.jpg" alt="Ketajaman dan detail: sebelum">
+          <span class="lbl k">Sebelum</span><span class="lbl n">Sesudah</span>
+          <div class="garis"></div><div class="gagang">⇆</div>
+          <input type="range" min="0" max="100" value="50" aria-label="Geser untuk membandingkan sebelum dan sesudah">
+        </div>
+        <div class="info"><h3>Ketajaman dan detail</h3><p>Foto yang buram dan pucat dirapikan agar siap dipakai untuk konten.</p><div class="tagkecil"><span>Detail</span><span>Konten</span></div></div></article>
+      <article class="karya muncul"><div class="ba" style="--pos:50%">
+          <img src="img/karya/retouch-3-sesudah.jpg" alt="Foto produk lebih segar: sesudah">
+          <img class="atas" src="img/karya/retouch-3-sebelum.jpg" alt="Foto produk lebih segar: sebelum">
+          <span class="lbl k">Sebelum</span><span class="lbl n">Sesudah</span>
+          <div class="garis"></div><div class="gagang">⇆</div>
+          <input type="range" min="0" max="100" value="50" aria-label="Geser untuk membandingkan sebelum dan sesudah">
+        </div>
+        <div class="info"><h3>Foto produk lebih segar</h3><p>Warna produk dibuat lebih hidup agar menarik di katalog.</p><div class="tagkecil"><span>Produk</span><span>Katalog</span></div></div></article>
+      <article class="karya muncul"><div class="ba" style="--pos:50%">
+          <img src="img/karya/retouch-4-sesudah.jpg" alt="Detail close-up: sesudah">
+          <img class="atas" src="img/karya/retouch-4-sebelum.jpg" alt="Detail close-up: sebelum">
+          <span class="lbl k">Sebelum</span><span class="lbl n">Sesudah</span>
+          <div class="garis"></div><div class="gagang">⇆</div>
+          <input type="range" min="0" max="100" value="50" aria-label="Geser untuk membandingkan sebelum dan sesudah">
+        </div>
+        <div class="info"><h3>Detail close-up</h3><p>Kontras dan tekstur diperjelas untuk foto jarak dekat.</p><div class="tagkecil"><span>Close-up</span><span>Tekstur</span></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="ajakan">
+  <div class="wrap">
+    <p class="catatan-karya">Gambar di halaman ini adalah contoh ilustrasi untuk proyek tugas kuliah dan akan diganti dengan karya asli madebyel.</p>
+    <div class="ajakan-box" style="margin-top:24px">
+      <h2>Suka hasilnya?<span class="tangan">yuk, bikin versimu sendiri</span></h2>
+      <a href="https://www.instagram.com/madebyel" target="_blank" rel="noopener" class="btn putih">Order via DM Instagram</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="kontak">
+  <div class="wrap">
+    <div class="kaki">
+      <div>
+        <img src="img/logo.png" alt="Logo madebyel">
+        <p>Jasa edit video dan foto yang personal, hangat, dan segar. Fresh edits, made by hand.</p>
+      </div>
+      <div>
+        <h4>Hubungi</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/madebyel" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram @madebyel</a></li>
+          <li><a href="https://www.tiktok.com/@madebyel" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 2.8 2.4 4.6 5 5"/></svg>TikTok @madebyel</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Jelajahi</h4>
+        <ul>
+          <li><a href="#tentang">Tentang</a></li>
+          <li><a href="#layanan">Layanan</a></li>
+          <li><a href="#order">Cara order</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#karya">Contoh karya</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bawah">
+      <span>© <span id="tahun"></span> madebyel · made by Biyel</span>
+      <span>Proyek tugas kuliah — Strategy Brand Communication, Ilmu Komunikasi UNDIRA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('tahun').textContent = new Date().getFullYear();
+  document.querySelectorAll('.menu a').forEach(a => a.addEventListener('click', () =>
+    document.getElementById('menu').classList.remove('buka')));
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add('tampil'); io.unobserve(e.target); }
+  }), {threshold:.1});
+  document.querySelectorAll('.muncul').forEach(el => io.observe(el));
+
+  // ===== Halaman Karya (dalam satu file) =====
+  const beranda = document.getElementById('hal-beranda'), karya = document.getElementById('hal-karya');
+  const linkKarya = document.querySelectorAll('.menu a[href="#karya"]');
+  function pilihTab(f){
+    document.querySelectorAll('.tab button').forEach(x => x.classList.toggle('aktif', x.dataset.f === f));
+    document.querySelectorAll('.kat').forEach(k => k.classList.toggle('sembunyi', f !== 'semua' && k.dataset.kat !== f));
+  }
+  document.querySelectorAll('.tab button').forEach(b => b.addEventListener('click', () => pilihTab(b.dataset.f)));
+  document.querySelectorAll('.ba').forEach(ba => {
+    const r = ba.querySelector('input');
+    r.addEventListener('input', () => ba.style.setProperty('--pos', r.value + '%'));
+  });
+  function rute(){
+    const h = location.hash, diKarya = h.startsWith('#karya');
+    beranda.hidden = diKarya; karya.hidden = !diKarya;
+    linkKarya.forEach(a => a.classList.toggle('aktif', diKarya));
+    document.title = diKarya ? 'Karya — madebyel' : 'madebyel — Fresh edits, made by hand.';
+    if (diKarya){
+      const f = h.split('-')[1] || 'semua';
+      pilihTab(['sosmed','video','retouch'].includes(f) ? f : 'semua');
+      window.scrollTo(0, 0);
+    } else if (h && h.length > 1){
+      const t = document.querySelector(h); if (t) t.scrollIntoView();
+    }
+  }
+  window.addEventListener('hashchange', rute); rute();
+</script>
+</body>
+</html>
